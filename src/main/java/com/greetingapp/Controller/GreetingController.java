@@ -16,7 +16,8 @@ public class GreetingController {
     @Autowired
     IGreetingService greetingService;
     @GetMapping("/greeting")
-    public Greeting getGreetinng() {
-       return greetingService.getGreeting();
+    public Greeting addGreetinng(@RequestParam(value = "fName",required = false) String firstName,
+                                 @RequestParam(value = "lName",required = false) String lastName) {
+       return greetingService.addGreeting(firstName,lastName);
     }
 }
