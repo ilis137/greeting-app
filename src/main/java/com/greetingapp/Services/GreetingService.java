@@ -3,6 +3,8 @@ package com.greetingapp.Services;
 import com.greetingapp.Model.Greeting;
 
 import com.greetingapp.Model.User;
+import com.greetingapp.Repository.GreetingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -11,16 +13,23 @@ import java.util.concurrent.atomic.AtomicLong;
 public class GreetingService implements IGreetingService{
     private static final String template = "Hello, %s !!!";
     private final AtomicLong counter=new AtomicLong();
+
+    @Autowired
+    GreetingRepository greetingRepository;
+
     @Override
-    public Greeting addGreeting(String firstName,String lastName) {
+    public Greeting addGreeting(User user) {
         String text=null;
-        if(firstName!=null&&lastName!=null){
+        String firstName= user.getFirstName();
+        String lastName=user.getLastName();
+        if(!firstName.isEmpty()&&!lastName.isEmpty()){
            text= String.format(template,firstName+" "+lastName);
-        }else if(firstName!=null||lastName!=null){
-            text= String.format(template,firstName==null?lastName:firstName);
+        }else if(!firstName.isEmpty()||!lastName.isEmpty()){
+            text= String.format(template,firstName.isEmpty()?lastName:firstName);
         }else{
             text= String.format(template,"World");
         }
-        return new Greeting(counter.incrementAndGet(),text);
+        Greeting newGreeting=new Greeting(counter.incrementAndGet(),text);
+        return greetingRepository.save(newGreeting);
     }
 }

@@ -1,6 +1,12 @@
 package com.greetingapp.Model;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Greeting {
+
+    @Id
     private Long id;
     private String text;
 

@@ -2,11 +2,11 @@ package com.greetingapp.Model;
 
 public class User {
     String firstName;
-    String lastname;
+    String lastName;
 
     public User(String firstName, String lastname) {
         this.firstName = firstName;
-        this.lastname = lastname;
+        this.lastName = lastname;
     }
 
     public String getFirstName() {
@@ -17,11 +17,11 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastname) {
+        this.lastName = lastname;
     }
 }
