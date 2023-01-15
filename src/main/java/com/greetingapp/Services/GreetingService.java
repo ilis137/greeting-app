@@ -41,6 +41,11 @@ public class GreetingService implements IGreetingService {
         return greetingRepository.save(greeting);
     }
 
+    @Override
+    public void deleteGreeting(long id) {
+         greetingRepository.deleteById(id);
+    }
+
     public String getText(User user) {
         String firstName = user.getFirstName();
         String lastName = user.getLastName();
