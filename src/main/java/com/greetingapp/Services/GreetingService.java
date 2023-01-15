@@ -2,7 +2,7 @@ package com.greetingapp.Services;
 
 import com.greetingapp.Model.Greeting;
 
-import com.greetingapp.Model.User;
+import com.greetingapp.DTO.User;
 import com.greetingapp.Repository.GreetingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +31,10 @@ public class GreetingService implements IGreetingService{
         }
         Greeting newGreeting=new Greeting(counter.incrementAndGet(),text);
         return greetingRepository.save(newGreeting);
+    }
+
+    @Override
+    public Greeting getGreeting(long id) {
+       return greetingRepository.findById(id).get();
     }
 }

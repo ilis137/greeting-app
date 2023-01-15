@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 public class Greeting {
 
     @Id
-    private Long id;
+    private long id;
     private String text;
 
     public Greeting(Long id, String text) {
